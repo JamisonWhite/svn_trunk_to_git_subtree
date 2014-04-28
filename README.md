@@ -27,14 +27,14 @@ Git ignore to initialize the target with
 
 ##Scripts
 
-###01\_init\_target\_repo.sh
+###01\_init\_target\_repo.sh [working folder]
 Create the target folder and initialize the Git repo.
 
-###02\_svn\_to\_staging.sh
+###02\_svn\_to\_staging.sh [working folder]
 Use "git svn clone" to create a new Git repo for each SVN trunk. 
 Use "git svn rebase" to update an already created Git repo.
 
-###03\_staging\_to\_target.sh
+###03\_staging\_to\_target.sh [working folder]
 Use "git subtree add" to add the folder to the target Git repo.
 Use "git subtree pull" to update an already created Git repo folder.
 
