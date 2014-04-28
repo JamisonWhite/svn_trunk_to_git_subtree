@@ -1,5 +1,8 @@
 #!/bin/bash
-workingfolder=$(pwd)
+workingfolder=$1
+if [ -z "$workingfolder" ]; then
+	workingfolder=$(pwd)
+fi
 targetfolder="$workingfolder/target"
 gitignorefile="$workingfolder/.gitignore"
 

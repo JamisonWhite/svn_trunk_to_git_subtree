@@ -1,5 +1,8 @@
 #!/bin/bash
-workingfolder=$(pwd)
+workingfolder=$1
+if [ -z "$workingfolder" ]; then
+	workingfolder=$(pwd)
+fi
 targetfolder="$workingfolder/target"
 stagingfolder="$workingfolder/staging"
 svnmapfile="$workingfolder/svn.map"
@@ -11,9 +14,10 @@ printf "
 = Working: $workingfolder
 = Target : $targetfolder
 = Staging: $stagingfolder
-= SVN Map: $svnsvnmapfile
+= SVN Map: $svnmapfile
 = Authors: $authorsfile
 ==============================================\n"
+
 
 if [ -z "$stagingfolder"]; then
 	printf "Staging folder is required.\n"

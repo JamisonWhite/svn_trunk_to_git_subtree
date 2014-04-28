@@ -1,5 +1,8 @@
 #!/bin/bash
-workingfolder=$(pwd)
+workingfolder=$1
+if [ -z "$workingfolder" ]; then
+	workingfolder=$(pwd)
+fi
 stagingfolder="$workingfolder/staging"
 svnmapfile="$workingfolder/svn.map"
 authorsfile="$workingfolder/authors.txt"
