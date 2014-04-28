@@ -1,1 +1,6 @@
 #Ignore project specific files and folders
+working/
+staging/
+target/
+authors.txt
+svn.map
