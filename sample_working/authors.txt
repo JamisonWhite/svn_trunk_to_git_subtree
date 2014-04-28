@@ -1,0 +1,12 @@
+mbogaert = Mathias Bogaert <mbogaert@apache.org>
+jcakalic = James P. Cakalic <jcakalic@apache.org>
+pglezen = Paul Glezen <pglezen@apache.org>
+cgülcü = Ceki Gülcü <cgülcü@apache.org>
+jkjome = Jacob Kjome <jkjome@apache.org>
+akristensen = Anders Kristensen <akristensen@apache.org>
+jmoore = Jim Moore <jmoore@apache.org>
+yshapira = Yoav Shapira <yshapira@apache.org>
+jskeet = Jon Skeet <jskeet@apache.org>
+psmith = Paul Smith <psmith@apache.org>
+ctaylor = Chris Taylor <ctaylor@apache.org>
+mwomack = Mark Womack <mwomack@apache.org>
