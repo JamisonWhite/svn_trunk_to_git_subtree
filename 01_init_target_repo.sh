@@ -29,7 +29,9 @@ git checkout -b svn_import
 mkdir source
 mkdir docs
 echo "#Importing SVN Trees" > README.md
-cp $gitignorefile $targetfolder/
+if [ -f "$gitignorefile" ]; then
+	cp $gitignorefile $targetfolder/
+fi
 git add .
 git commit -m "Initialized folder"
 cd $workingfolder
