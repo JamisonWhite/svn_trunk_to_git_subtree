@@ -4,11 +4,11 @@ svn\_trunk\_to\_git\_subtree
 Migrate multiple SVN repo trunks to a single Git repo using subtrees.
 
 These bash scripts are intended to migrate multiple SVN trunk folders into a single Git repo. 
-They support one-way creation and update operations. Because SVN branch and tag folders are ignored these scripts can be used on SVN servers that contain multiple projects with each containing its own trunk, branch, and tag folders.
+They support one-way creation and update operations. Because SVN branch and tag folders are ignored these scripts can be used on SVN servers that contain multiple projects where each project contains its own trunk, branch, and tag folders. I  needed this to migrate 10 years of SVN code to TFS and did not want the branch history.
 
 ##Environment
 
-For my testing I used Git-Bash on a Windows 8 machine. 
+I used Git-Bash on a Windows 8 machine to pull from a VisualSVN server to a Microsoft TFS. No other configurations were tested.
 
 ##Inputs
 By default the scripts will create a *working* folder in the current folder. 
@@ -30,7 +30,7 @@ Optional .gitignore file to be copied to the target repo.
 
 
 ##Scripts
-Each script has an example using the included sample working folder. The working folder has the inputs to migrate the Apache log4j, log4net, and log4php SVN trunks into a single Git repo. __Beware these SVN repos are huge and require XXX hours to process. I do not recommend executing the examples.__
+Each script has an example using the included sample working folder. The working folder has the inputs to migrate the Apache log4j, log4net, and log4php SVN trunks into a single Git repo. <span style="color:red">(Do not execute the samples. The current sample SVN repos are huge and require  hours to process.)</span>
 
 ###01\_init\_target\_repo.sh [working folder]
 - Create the target folder 
@@ -42,7 +42,7 @@ Example:
 
 
 ###02\_svn\_to\_staging.sh [working folder]
-- Use "git svn clone" to create a new Git repo for each SVN trunk. __This step is very slow especially for the sample.__ 
+- Use "git svn clone" to create a new Git repo for each SVN trunk. __(very slow)__ 
 - Use "git svn rebase" to update an already created Git repo.
 
 Example:
@@ -60,6 +60,7 @@ Example:
 
 
 ##Future
-- Find smaller, public SVN repos to use for the examples.
+- Find smaller, public SVN repos to use for the examples
+- Test in different environments
 - Add push to Git remote
 - Add two-way updates
