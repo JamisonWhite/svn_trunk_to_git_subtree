@@ -52,7 +52,7 @@ while read folder svn; do
 		git svn rebase
 		cd $workingfolder
 	else
-		prinf "Creating Git repo from SVN $svn\n"
+		printf "Creating Git repo from SVN $svn\n"
 		git svn clone $svn $stagingfolder/$folder --no-minimize-url -A $authorsfile
 		#replace the absolute path with a relative path
 		sed -i 's/authorsfile = .*/authorsfile = ..\/authors.txt/g' $stagingfolder/$folder/.git/config

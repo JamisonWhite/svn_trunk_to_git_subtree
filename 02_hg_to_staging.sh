@@ -50,7 +50,7 @@ while read folder scm; do
 		cd $stagingfolder/$folder
 		~/fast-export/hg-reset.sh -r -1
 	else
-		prinf "Creating Git repo from SCM $scm\n"
+		printf "Creating Git repo from SCM $scm\n"
 		git init
 		~/fast-export/hg-fast-export.sh -r -A $authorsfile $stagingfolder/$folder
 		#replace the absolute path with a relative path
