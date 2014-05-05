@@ -4,15 +4,16 @@ if [ -z "$workingfolder" ]; then
 	workingfolder=$(pwd)
 fi
 stagingfolder="$workingfolder/staging"
-mapfile="$workingfolder/svn.map"
+mapfile="$workingfolder/scm.map"
 authorsfile="$workingfolder/authors.txt"
 
 printf "
 ==============================================
-= Migrate/update SVN repos to staging Git repos.
+= Migrate/update Mercurial repos to staging Git repos.
+- (Requires fast-export installed in home directory!)
 = Working: $workingfolder
 = Staging: $stagingfolder
-= SVN Map: $mapfile
+= Hg Map : $mapfile
 = Authors: $authorsfile
 ==============================================\n"
 
@@ -22,7 +23,7 @@ if [ -z "$stagingfolder" ]; then
 	exit 1	
 fi
 if [ ! -f "$mapfile" ]; then
-	printf "SVN map file is required. $mapfile\n"
+	printf "Hg map file is required. $mapfile\n"
 	exit 1
 fi
 if [ ! -f "$authorsfile" ]; then
@@ -38,25 +39,24 @@ if [ ! -d "$stagingfolder" ]; then
 fi
 cp -u $authorsfile $stagingfolder/authors.txt
 
-#process SVN map file
-while read folder svn; do
+#process scm map file
+while read folder scm; do
 	printf "
 ==================================\n
 = Processing: $folder\n
 ==================================\n"
+	cd $stagingfolder/$folder
 	if [ -d "$stagingfolder/$folder" ]; then
-		printf "Updating Git repo from SVN $svn\n"
-		#optional: if you need to reset the authorsfile setting
-		#sed -i 's/authorsfile = .*/authorsfile = ..\/authors.txt/g' $stagingfolder/$folder/.git/config
-		cd $stagingfolder/$folder
-		git svn rebase
-		cd $workingfolder
+		printf "Updating Git repo from SCM $scm\n"
+		~/fast-export/hg-reset.sh -r -1
 	else
-		prinf "Creating Git repo from SVN $svn\n"
-		git svn clone $svn $stagingfolder/$folder --no-minimize-url -A $authorsfile
+		prinf "Creating Git repo from SCM $scm\n"
+		git init
+		~/fast-export/hg-fast-export.sh -r -A $authorsfile $stagingfolder/$folder
 		#replace the absolute path with a relative path
-		sed -i 's/authorsfile = .*/authorsfile = ..\/authors.txt/g' $stagingfolder/$folder/.git/config
+		sed -i 's/authorsfile = .*/authorsfile = ..\/authors.txt/g' $stagingfolder/$folder/.git/config		
 	fi
+	cd $workingfolder
 	printf "\n"
 done < "$mapfile"
 

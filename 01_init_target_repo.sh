@@ -9,7 +9,7 @@ gitignorefile="$workingfolder/.gitignore"
 
 printf "
 ==============================================
-= Migrate/update SVN repos to staging Git repos.
+= Migrate/update SVN/Mercurial repos to staging Git repos.
 = Working: $workingfolder
 = Target : $targetfolder
 = GitIgnore : $gitignorefile
@@ -25,10 +25,10 @@ printf "Creating target folder. $targetfolder\n"
 mkdir $targetfolder
 cd $targetfolder
 git init
-git checkout -b svn_import
+git checkout -b scm_import
 mkdir source
 mkdir docs
-echo "#Importing SVN Trees" > README.md
+echo "#Importing SVN/Mercurial Trees" > README.md
 if [ -f "$gitignorefile" ]; then
 	cp $gitignorefile $targetfolder/
 fi
