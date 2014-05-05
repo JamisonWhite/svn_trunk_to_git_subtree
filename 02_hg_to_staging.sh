@@ -45,9 +45,9 @@ while read folder scm; do
 ==================================\n
 = Processing: $folder\n
 ==================================\n"
-	cd $stagingfolder/$folder
 	if [ -d "$stagingfolder/$folder" ]; then
 		printf "Updating Git repo from SCM $scm\n"
+		cd $stagingfolder/$folder
 		~/fast-export/hg-reset.sh -r -1
 	else
 		prinf "Creating Git repo from SCM $scm\n"
